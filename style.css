@@ -467,26 +467,41 @@ body {
 }
 
 /* ============================================================
-   PERSON CARDS
+   PERSON CARDS — Scroll Gallery Layout
    ============================================================ */
 .cards-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 4.5rem;
   position: relative;
   z-index: 1;
 }
 
 .person-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth);
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2.4rem 2.4rem;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  position: relative;
+}
+
+.person-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--rose-deep), var(--gold));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .person-card.visible {
@@ -494,80 +509,21 @@ body {
   transform: translateY(0);
 }
 
-.person-card.reverse {
-  direction: rtl;
-}
-
-.person-card.reverse > * {
-  direction: ltr;
-}
-
-/* Card image panel */
-.card-image-panel {
-  position: relative;
-  height: 480px;
-}
-
-.card-photo {
-  position: absolute;
-  width: 78%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: var(--shadow-card);
-  transition: all 0.5s var(--ease-smooth);
-}
-
-.card-photo:first-child {
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-
-.card-photo.secondary {
-  bottom: -24px;
-  right: -24px;
-  width: 55%;
-  height: 55%;
-  z-index: 1;
-  border: 3px solid var(--ink-mid);
-  filter: brightness(0.8);
-}
-
-.card-image-panel:hover .card-photo:first-child {
-  transform: translate(-6px, -6px) rotate(-1deg);
-  box-shadow: 0 30px 70px rgba(0,0,0,0.4);
-}
-
-.card-image-panel:hover .card-photo.secondary {
-  filter: brightness(1);
-  transform: translate(4px, 4px) rotate(1deg);
-}
-
-.card-img-overlay {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 1.2rem;
-  z-index: 3;
-  background: var(--glass-strong);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(201,168,76,0.35);
-  border-radius: 12px;
-  padding: 0.5rem 0.9rem;
-}
-
-.card-number {
-  font-family: var(--font-script);
-  font-size: 1.6rem;
-  color: var(--gold-light);
-  line-height: 1;
-}
-
-/* Card content */
-.card-content {
+/* ---- Card Header ---- */
+.card-header {
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.card-number-badge {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.5;
+  line-height: 1;
+  margin-right: 0.2rem;
 }
 
 .card-tag {
@@ -579,26 +535,138 @@ body {
   font-size: 0.8rem;
   color: var(--gold-light);
   letter-spacing: 0.08em;
-  width: fit-content;
+  flex-shrink: 0;
 }
 
 .card-name {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
   background: linear-gradient(135deg, #fff 0%, var(--gold-light) 60%, var(--rose) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: 0.04em;
+  flex: 1;
 }
 
+.card-wish {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(192,96,122,0.15));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  animation: wishGlow 3s ease-in-out infinite;
+}
+
+@keyframes wishGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.2); }
+  50%       { box-shadow: 0 0 16px 2px rgba(201,168,76,0.15); }
+}
+
+/* ---- Scrollable Image Row ---- */
+.img-scroll-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 2.5rem 0.5rem 1rem;   /* top padding creates space for pop-up */
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(255,255,255,0.05);
+  /* allow overflow upward for the pop effect */
+  overflow-y: visible;
+  clip-path: none;
+}
+
+.img-scroll-row::-webkit-scrollbar {
+  height: 4px;
+}
+.img-scroll-row::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+}
+.img-scroll-row::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.scroll-img {
+  flex-shrink: 0;
+  position: relative;
+  width: 200px;
+  height: 148px;
+  border-radius: 14px;
+  overflow: visible;        /* allow child img to overflow on hover */
+  cursor: pointer;
+  z-index: 1;
+  transition: z-index 0s;  /* instant z-index change */
+}
+
+.scroll-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  border: 2px solid rgba(201,168,76,0.18);
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s var(--ease-smooth),
+    border-color 0.3s;
+  will-change: transform;
+}
+
+.scroll-img:hover {
+  z-index: 20;
+}
+
+.scroll-img:hover img {
+  transform: scale(1.55) translateY(-18px);
+  box-shadow:
+    0 28px 60px rgba(0,0,0,0.65),
+    0 0 0 2px var(--gold),
+    0 0 30px rgba(201,168,76,0.35);
+  border-color: var(--gold);
+}
+
+/* Name badge under each image on hover */
+.scroll-label {
+  position: absolute;
+  bottom: -2.2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.85rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.3s var(--ease-bounce);
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.scroll-img:hover .scroll-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- Message block ---- */
 .card-message {
-  background: var(--glass);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
-  padding: 1.8rem 1.8rem 1.8rem 2rem;
+  padding: 1.6rem 1.8rem 1.6rem 2rem;
   position: relative;
   overflow: hidden;
 }
@@ -615,11 +683,11 @@ body {
 }
 
 .card-message p {
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   line-height: 1.95;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255,255,255,0.78);
   font-weight: 300;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.65rem;
 }
 
 .card-message p:last-of-type {
@@ -631,33 +699,12 @@ body {
   font-size: 4rem;
   line-height: 1;
   color: var(--gold);
-  opacity: 0.25;
+  opacity: 0.2;
   position: absolute;
 }
 
 .quote-mark.open  { top: -0.5rem; left: 0.8rem; }
 .quote-mark.close { bottom: -1.5rem; right: 0.8rem; }
-
-.card-wish {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.4rem;
-  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(192,96,122,0.15));
-  border: 1px solid rgba(201,168,76,0.3);
-  border-radius: 50px;
-  font-size: 0.88rem;
-  color: var(--gold-light);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  width: fit-content;
-  animation: wishGlow 3s ease-in-out infinite;
-}
-
-@keyframes wishGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.2); }
-  50%       { box-shadow: 0 0 16px 2px rgba(201,168,76,0.15); }
-}
 
 /* ============================================================
    CLOSING SECTION
@@ -833,40 +880,38 @@ body {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
-  .person-card {
-    grid-template-columns: 1fr;
-  }
-
-  .person-card.reverse {
-    direction: ltr;
-  }
-
-  .card-image-panel {
-    height: 300px;
-  }
-
-  .card-photo.secondary {
-    width: 40%;
-    height: 40%;
-    bottom: -16px;
-    right: -12px;
-  }
-
   .slide-btn { display: none; }
+
+  .person-card {
+    padding: 1.6rem 1.4rem 1.8rem;
+  }
+
+  .scroll-img {
+    width: 160px;
+    height: 118px;
+  }
 }
 
 @media (max-width: 560px) {
   .hero-title .line1 { letter-spacing: 0.02em; }
-  .cards-container { gap: 3.5rem; }
-  #messages { padding: 4rem 1rem; }
-  .card-message { padding: 1.4rem 1.2rem 1.4rem 1.4rem; }
+  .cards-container { gap: 2.8rem; }
+  #messages { padding: 4rem 0.8rem; }
+  .card-message { padding: 1.2rem 1rem 1.2rem 1.2rem; }
+
+  .scroll-img {
+    width: 130px;
+    height: 95px;
+  }
+
+  .card-header { gap: 0.5rem; }
+  .card-number-badge { font-size: 1.5rem; }
 }
 
 /* ============================================================
-   ENTRANCE ANIMATIONS FOR CARDS
+   ENTRANCE ANIMATIONS
    ============================================================ */
 .person-card:nth-child(even) {
-  transition-delay: 0.15s;
+  transition-delay: 0.12s;
 }
 
 /* Shimmer on card-message */
@@ -880,10 +925,10 @@ body {
   background: linear-gradient(
     120deg,
     transparent 30%,
-    rgba(255,255,255,0.04) 50%,
+    rgba(255,255,255,0.03) 50%,
     transparent 70%
   );
-  animation: shimmer 5s ease-in-out infinite;
+  animation: shimmer 6s ease-in-out infinite;
   pointer-events: none;
 }
 
