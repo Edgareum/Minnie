@@ -10,14 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ---- Index-specific overrides ---- */
     .people-grid {
       max-width: 1100px;
       margin: 0 auto 5rem;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.6rem;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 1.4rem;
       position: relative;
       z-index: 1;
     }
@@ -26,13 +25,13 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.09);
       border-radius: 20px;
-      padding: 1.6rem 1.2rem 1.4rem;
+      padding: 1.4rem 1rem 1.2rem;
       text-align: center;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.7rem;
       position: relative;
       overflow: hidden;
       transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
@@ -53,45 +52,22 @@
     }
 
     .person-tile:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-8px) scale(1.03);
       box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.3);
       border-color: rgba(201,168,76,0.3);
     }
 
     .person-tile:hover::before { opacity: 1; }
 
-    .tile-number {
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.4rem;
-      color: rgba(201,168,76,0.4);
-      line-height: 1;
-    }
-
-    .tile-tag {
-      font-size: 0.72rem;
-      padding: 0.2rem 0.8rem;
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 50px;
-      color: #f0d080;
-      letter-spacing: 0.06em;
-      background: rgba(201,168,76,0.08);
-    }
-
     .tile-name {
       font-family: 'Noto Serif SC', serif;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
       background: linear-gradient(135deg, #fff 0%, #f0d080 60%, #e8a0b0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 0.05em;
-    }
-
-    .tile-wish {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
     }
 
     .tile-qr {
@@ -103,31 +79,17 @@
     }
 
     .person-tile:hover .tile-qr {
-      transform: scale(1.05);
+      transform: scale(1.06);
       box-shadow: 0 8px 28px rgba(201,168,76,0.3);
-    }
-
-    .tile-cta {
-      font-size: 0.72rem;
-      color: #f0d080;
-      letter-spacing: 0.08em;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .person-tile:hover .tile-cta {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     @media (max-width: 560px) {
       .people-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 0.9rem;
         padding: 0 0.8rem;
       }
-      .tile-name { font-size: 1.2rem; }
+      .tile-name { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -203,133 +165,81 @@
 
       <!-- 01 群姐 -->
       <a class="person-tile" href="qun.html">
-        <span class="tile-number">01</span>
-        <span class="tile-tag">🌸 退休祝福</span>
         <span class="tile-name">群 姐</span>
-        <span class="tile-wish">🌺 退休快乐，幸福安康</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fqun.html" alt="QR 群姐" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 02 冰姐 -->
       <a class="person-tile" href="bing.html">
-        <span class="tile-number">02</span>
-        <span class="tile-tag">🌼 感谢同行</span>
         <span class="tile-name">冰 姐</span>
-        <span class="tile-wish">☀️ 工作顺利，每天开心</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fbing.html" alt="QR 冰姐" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 03 Helen -->
       <a class="person-tile" href="helen.html">
-        <span class="tile-number">03</span>
-        <span class="tile-tag">⭐ 感谢姐姐</span>
         <span class="tile-name">Helen</span>
-        <span class="tile-wish">✨ 发光发亮，继续精彩</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fhelen.html" alt="QR Helen" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 04 Lily -->
       <a class="person-tile" href="lily.html">
-        <span class="tile-number">04</span>
-        <span class="tile-tag">🌷 珍贵回忆</span>
         <span class="tile-name">Lily</span>
-        <span class="tile-wish">🌸 越来越好，前途无量</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Flily.html" alt="QR Lily" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 05 Leon -->
       <a class="person-tile" href="leon.html">
-        <span class="tile-number">05</span>
-        <span class="tile-tag">🤝 可靠伙伴</span>
         <span class="tile-name">Leon</span>
-        <span class="tile-wish">🍀 好运常伴，顺顺利利</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fleon.html" alt="QR Leon" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 06 Wilson -->
       <a class="person-tile" href="wilson.html">
-        <span class="tile-number">06</span>
-        <span class="tile-tag">🎊 返乡新程</span>
         <span class="tile-name">Wilson</span>
-        <span class="tile-wish">🏠 归途顺利，武汉再见</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fwilson.html" alt="QR Wilson" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 07 Susan -->
       <a class="person-tile" href="susan.html">
-        <span class="tile-number">07</span>
-        <span class="tile-tag">🌺 感谢有你</span>
         <span class="tile-name">Susan</span>
-        <span class="tile-wish">🌟 一切顺利，幸福快乐</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fsusan.html" alt="QR Susan" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 08 Megan -->
       <a class="person-tile" href="megan.html">
-        <span class="tile-number">08</span>
-        <span class="tile-tag">💫 感谢同行</span>
         <span class="tile-name">Megan</span>
-        <span class="tile-wish">🌸 前途无量，越来越好</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fmegan.html" alt="QR Megan" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 09 Annie -->
       <a class="person-tile" href="annie.html">
-        <span class="tile-number">09</span>
-        <span class="tile-tag">🌼 温暖同事</span>
         <span class="tile-name">Annie</span>
-        <span class="tile-wish">☀️ 平安喜乐，万事顺心</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fannie.html" alt="QR Annie" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 10 Jessica -->
       <a class="person-tile" href="jessica.html">
-        <span class="tile-number">10</span>
-        <span class="tile-tag">⭐ 优秀伙伴</span>
         <span class="tile-name">Jessica</span>
-        <span class="tile-wish">✨ 闪闪发光，未来可期</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fjessica.html" alt="QR Jessica" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 11 Candy -->
       <a class="person-tile" href="candy.html">
-        <span class="tile-number">11</span>
-        <span class="tile-tag">🍬 甜蜜同事</span>
         <span class="tile-name">Candy</span>
-        <span class="tile-wish">🌺 甜甜蜜蜜，幸福满满</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fcandy.html" alt="QR Candy" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 12 Ken -->
       <a class="person-tile" href="ken.html">
-        <span class="tile-number">12</span>
-        <span class="tile-tag">💪 靠谱战友</span>
         <span class="tile-name">Ken</span>
-        <span class="tile-wish">🏆 步步高升，所向披靡</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fken.html" alt="QR Ken" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
       <!-- 13 Kelins -->
       <a class="person-tile" href="kelins.html">
-        <span class="tile-number">13</span>
-        <span class="tile-tag">🌟 特别的你</span>
         <span class="tile-name">Kelins</span>
-        <span class="tile-wish">🍀 好运连连，精彩无限</span>
         <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fkelins.html" alt="QR Kelins" width="120" height="120" loading="lazy"/>
-        <span class="tile-cta">查看祝福 →</span>
-      </a>
+        </a>
 
     </div>
   </section>
@@ -355,3 +265,4 @@
   <script src="main.js"></script>
 </body>
 </html>
+
