@@ -1,0 +1,13 @@
+{
+  "name": "minnie-farewell",
+  "version": "1.0.0",
+  "description": "Farewell website for Chinese colleagues",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
