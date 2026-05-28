@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>感谢与祝福 · 致亲爱的同事们</title>
+  <meta name="description" content="送给每一位亲爱的同事，感谢曾经共同奋斗的时光，愿未来一切顺遂，幸福安康。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HERO / SLIDESHOW ===== -->
+  <section id="hero">
+    <div class="slideshow" id="slideshow">
+      <div class="slide active" style="background-image:url('1.jpg')"></div>
+      <div class="slide" style="background-image:url('2.jpg')"></div>
+      <div class="slide" style="background-image:url('3.jpg')"></div>
+      <div class="slide" style="background-image:url('4.jpg')"></div>
+      <div class="slide" style="background-image:url('5.jpg')"></div>
+      <div class="slide" style="background-image:url('6.jpg')"></div>
+      <div class="slide" style="background-image:url('7.jpg')"></div>
+      <div class="slide" style="background-image:url('8.jpg')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <!-- Floating petals -->
+    <div class="petals" id="petals"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">💐 真诚祝福</div>
+      <h1 class="hero-title">
+        <span class="line1">感谢与祝福</span>
+        <span class="line2">致亲爱的同事们</span>
+      </h1>
+      <p class="hero-subtitle">感谢每一段共同奋斗的岁月<br/>愿你们前路似锦，幸福安康</p>
+      <div class="hero-divider">
+        <span class="divider-icon">✦</span>
+        <span class="divider-line"></span>
+        <span class="divider-icon">✦</span>
+      </div>
+      <div class="hero-names">
+        <a href="#co-qun" class="name-pill">Co Qun</a>
+        <a href="#co-bing" class="name-pill">Co Bing</a>
+        <a href="#helen" class="name-pill">Helen</a>
+        <a href="#lily" class="name-pill">Lily</a>
+        <a href="#wilson" class="name-pill">Wilson</a>
+        <a href="#leon" class="name-pill">Leon</a>
+      </div>
+    </div>
+
+    <div class="slide-indicators" id="slideIndicators"></div>
+    <button class="slide-btn prev" id="prevBtn" aria-label="Previous">‹</button>
+    <button class="slide-btn next" id="nextBtn" aria-label="Next">›</button>
+
+    <div class="scroll-hint">
+      <span>向下滚动</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY STRIP ===== -->
+  <section id="gallery">
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-item"><img src="1.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="2.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="3.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="4.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="5.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="6.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="7.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="8.jpg" alt="回忆" loading="lazy" /></div>
+      <!-- Duplicate for infinite scroll -->
+      <div class="gallery-item"><img src="1.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="2.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="3.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="4.jpg" alt="回忆" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- ===== MESSAGES SECTION ===== -->
+  <section id="messages">
+    <div class="section-header">
+      <div class="section-badge">💌 心意满满</div>
+      <h2 class="section-title">每一份祝福，都来自真心</h2>
+      <p class="section-sub">感谢共事的每一天，愿你们的未来，如花盛放</p>
+    </div>
+
+    <div class="cards-container">
+
+      <!-- Co Qun -->
+      <article class="person-card" id="co-qun">
+        <div class="card-image-panel">
+          <img src="1.jpg" alt="Co Qun" class="card-photo" loading="lazy" />
+          <img src="2.jpg" alt="Co Qun 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">01</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">🌸 退休祝福</div>
+          <h3 class="card-name">Co Qun</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>时间过得真的很快，从我刚进公司到现在，一直都很感谢您的照顾和指导。虽然您平时对工作很严格，但大家都知道，您其实是一个特别温暖、特别为别人着想的人。很多时候，您嘴上不说，却一直默默照顾着大家。</p>
+            <p>这些年您真的辛苦了。现在终于到了可以好好休息、享受生活的时候了。虽然想到以后不能再和您一起工作，心里还是会有很多舍不得，但更希望您以后每天都能轻松开心，身体健康，平平安安。</p>
+            <p>也谢谢您曾经对我的帮助和包容，我会一直记得。真心祝福您，退休生活幸福快乐，一切顺顺利利。</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">🌺 退休快乐，幸福安康</div>
+        </div>
+      </article>
+
+      <!-- Co Bing -->
+      <article class="person-card reverse" id="co-bing">
+        <div class="card-image-panel">
+          <img src="3.jpg" alt="Co Bing" class="card-photo" loading="lazy" />
+          <img src="4.jpg" alt="Co Bing 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">02</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">🌼 感谢同行</div>
+          <h3 class="card-name">Co Bing</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>这段时间真的很感谢您的照顾和帮助。您平时总是很亲切，也很会照顾大家，跟您一起工作的时候，气氛都会轻松很多。很多事情因为有您的帮忙，也让我学到了不少东西。</p>
+            <p>虽然相处的时间不算特别长，但还是很开心能够认识您、和您一起共事。以后不管大家在哪里工作，我都会记得这段一起努力的日子。</p>
+            <p>真心祝福您以后工作顺利，生活开心，每一天都平安幸福，也希望您一直都能保持现在这样温暖又开朗的样子。</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">☀️ 工作顺利，每天开心</div>
+        </div>
+      </article>
+
+      <!-- Helen -->
+      <article class="person-card" id="helen">
+        <div class="card-image-panel">
+          <img src="5.jpg" alt="Helen" class="card-photo" loading="lazy" />
+          <img src="6.jpg" alt="Helen 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">03</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">⭐ 感谢姐姐</div>
+          <h3 class="card-name">Helen</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>这几年真的很幸运能够遇到你。刚开始很多事情我都不懂，是你一步一步耐心地教我、带着我，也因为有你，我才能慢慢成长到现在。工作上的你总是很厉害、很果断，很多问题到了你那里，好像都会变得安心很多。</p>
+            <p>但对我来说，你不只是同事，更像一个姐姐一样。除了工作，你也陪我聊了很多事情，在我压力大或者迷茫的时候，你总是会给我很多力量。其实我一直都很感谢你，只是平时没有认真说过。</p>
+            <p>虽然以后不在同一个team了，还是会觉得有点舍不得，但想到以后还能联系，心里又觉得安心一点。希望你去新的BU之后，一切都顺顺利利，继续发光发亮，也希望以后我们还能像现在一样，经常聊天、一起吐槽、一起加油。</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">✨ 发光发亮，继续精彩</div>
+        </div>
+      </article>
+
+      <!-- Lily -->
+      <article class="person-card reverse" id="lily">
+        <div class="card-image-panel">
+          <img src="7.jpg" alt="Lily" class="card-photo" loading="lazy" />
+          <img src="8.jpg" alt="Lily 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">04</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">🌷 珍贵回忆</div>
+          <h3 class="card-name">Lily</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>其实刚开始认识的时候，我们还没有特别熟，但后来慢慢相处之后，真的越来越觉得你是一个很好、很温暖的人。尤其是我去中国学习那段时间，你给了我很多照顾，带我出去玩、帮我买东西，也一直对我特别好。对我来说，那段回忆真的很珍贵，我也一直都记在心里。</p>
+            <p>你工作能力很强，做事情认真又靠谱，同时也很懂得照顾别人的感受。后来我们也越来越常聊天、分享很多事情，所以现在想到要分别，心里还是会很舍不得。</p>
+            <p>不过我相信，像你这么优秀的人，不管去到哪里都会越来越好。希望你以后工作顺利、生活开心，也希望以后如果有机会，我们还能再见面，一起吃饭、聊天，就像以前一样。</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">🌸 越来越好，前途无量</div>
+        </div>
+      </article>
+
+      <!-- Wilson -->
+      <article class="person-card" id="wilson">
+        <div class="card-image-panel">
+          <img src="2.jpg" alt="Wilson" class="card-photo" loading="lazy" />
+          <img src="5.jpg" alt="Wilson 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">05</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">🎊 返乡新程</div>
+          <h3 class="card-name">Wilson</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>虽然一起工作的时间过得很快，但很开心能够认识你。对我们来说，你是一个性格特别开朗、很好相处的人，能够和你成为同事，真的让人觉得很开心。</p>
+            <p>现在你要回武汉开始新的生活了，虽然会有点舍不得，但还是很替你开心。希望以后不管是在工作还是生活上，一切都能顺顺利利，天天开心，也希望你回家之后能够多陪陪家人，好好享受新的生活。</p>
+            <p>以后如果还有机会见面，一定要再一起吃饭聊天。也欢迎你以后有机会再来越南玩！</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">🏠 归途顺利，武汉再见</div>
+        </div>
+      </article>
+
+      <!-- Leon -->
+      <article class="person-card reverse" id="leon">
+        <div class="card-image-panel">
+          <img src="6.jpg" alt="Leon" class="card-photo" loading="lazy" />
+          <img src="3.jpg" alt="Leon 2" class="card-photo secondary" loading="lazy" />
+          <div class="card-img-overlay">
+            <span class="card-number">06</span>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-tag">🤝 可靠伙伴</div>
+          <h3 class="card-name">Leon</h3>
+          <div class="card-message">
+            <div class="quote-mark open">"</div>
+            <p>虽然你平时话不多，也比较安静，但大家都知道你是一个很好、很愿意帮助别人的人。每次有人有问题的时候，你都会很认真地帮忙回答，让人觉得特别可靠。</p>
+            <p>能和你一起工作真的很开心。很多时候虽然没有太多话，但相处起来会让人觉得很舒服、很安心。我也一直很感谢你平时的帮助。</p>
+            <p>以后我们还会继续在同一个team一起努力，希望接下来的工作一切顺利。最后，也希望你以后一直都能开开心心的，顺顺利利，遇到很多很多好运。</p>
+            <div class="quote-mark close">"</div>
+          </div>
+          <div class="card-wish">🍀 好运常伴，顺顺利利</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section id="closing">
+    <div class="closing-bg"></div>
+    <div class="closing-content">
+      <div class="lantern-row">
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+      </div>
+      <h2 class="closing-title">感谢每一段相遇</h2>
+      <p class="closing-sub">不管身在何处，那些一起努力的日子，都是最珍贵的回忆</p>
+      <p class="closing-sub">愿大家都能幸福快乐，一切顺顺利利 🌺</p>
+
+      <!-- QR Section -->
+      <div class="qr-section" id="qrSection">
+        <h3 class="qr-title">📱 扫码查看此页面</h3>
+        <div class="qr-wrapper">
+          <canvas id="qrCanvas"></canvas>
+        </div>
+        <p class="qr-hint" id="qrHint">请部署到 GitHub Pages 后更新链接</p>
+        <div class="qr-input-row">
+          <input type="text" id="qrUrlInput" placeholder="输入你的 GitHub Pages URL..." />
+          <button id="qrGenBtn">生成 QR</button>
+        </div>
+      </div>
+
+      <div class="footer-line">
+        <span>❤️ 用心制作，送给最好的同事们</span>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
