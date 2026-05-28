@@ -571,96 +571,6 @@ body {
   50%       { box-shadow: 0 0 16px 2px rgba(201,168,76,0.15); }
 }
 
-/* ---- Scrollable Image Row ---- */
-.img-scroll-row {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 2.5rem 0.5rem 1rem;   /* top padding creates space for pop-up */
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold) rgba(255,255,255,0.05);
-  /* allow overflow upward for the pop effect */
-  overflow-y: visible;
-  clip-path: none;
-}
-
-.img-scroll-row::-webkit-scrollbar {
-  height: 4px;
-}
-.img-scroll-row::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-  border-radius: 2px;
-}
-.img-scroll-row::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 2px;
-}
-
-.scroll-img {
-  flex-shrink: 0;
-  position: relative;
-  width: 200px;
-  height: 148px;
-  border-radius: 14px;
-  overflow: visible;        /* allow child img to overflow on hover */
-  cursor: pointer;
-  z-index: 1;
-  transition: z-index 0s;  /* instant z-index change */
-}
-
-.scroll-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 14px;
-  display: block;
-  border: 2px solid rgba(201,168,76,0.18);
-  transition:
-    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.45s var(--ease-smooth),
-    border-color 0.3s;
-  will-change: transform;
-}
-
-.scroll-img:hover {
-  z-index: 20;
-}
-
-.scroll-img:hover img {
-  transform: scale(1.55) translateY(-18px);
-  box-shadow:
-    0 28px 60px rgba(0,0,0,0.65),
-    0 0 0 2px var(--gold),
-    0 0 30px rgba(201,168,76,0.35);
-  border-color: var(--gold);
-}
-
-/* Name badge under each image on hover */
-.scroll-label {
-  position: absolute;
-  bottom: -2.2rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.22rem 0.85rem;
-  border-radius: 20px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s, transform 0.3s var(--ease-bounce);
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-.scroll-img:hover .scroll-label {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
 /* ---- Message block ---- */
 .card-message {
   background: rgba(255,255,255,0.04);
@@ -885,11 +795,6 @@ body {
   .person-card {
     padding: 1.6rem 1.4rem 1.8rem;
   }
-
-  .scroll-img {
-    width: 160px;
-    height: 118px;
-  }
 }
 
 @media (max-width: 560px) {
@@ -897,11 +802,6 @@ body {
   .cards-container { gap: 2.8rem; }
   #messages { padding: 4rem 0.8rem; }
   .card-message { padding: 1.2rem 1rem 1.2rem 1.2rem; }
-
-  .scroll-img {
-    width: 130px;
-    height: 95px;
-  }
 
   .card-header { gap: 0.5rem; }
   .card-number-badge { font-size: 1.5rem; }
