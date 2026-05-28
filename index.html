@@ -9,6 +9,127 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ---- Index-specific overrides ---- */
+    .people-grid {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.6rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .person-tile {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 1.6rem 1.2rem 1.4rem;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s ease,
+                  border-color 0.3s;
+      backdrop-filter: blur(12px);
+    }
+
+    .person-tile::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, #c9a84c, #e8a0b0, #c9a84c);
+      border-radius: 20px 20px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .person-tile:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.3);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    .person-tile:hover::before { opacity: 1; }
+
+    .tile-number {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      color: rgba(201,168,76,0.4);
+      line-height: 1;
+    }
+
+    .tile-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.8rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50px;
+      color: #f0d080;
+      letter-spacing: 0.06em;
+      background: rgba(201,168,76,0.08);
+    }
+
+    .tile-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #f0d080 60%, #e8a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.05em;
+    }
+
+    .tile-wish {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    .tile-qr {
+      border-radius: 10px;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+
+    .person-tile:hover .tile-qr {
+      transform: scale(1.05);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.3);
+    }
+
+    .tile-cta {
+      font-size: 0.72rem;
+      color: #f0d080;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .person-tile:hover .tile-cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 560px) {
+      .people-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 0.8rem;
+      }
+      .tile-name { font-size: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,8 +146,6 @@
       <div class="slide" style="background-image:url('public/8.jpg')"></div>
     </div>
     <div class="hero-overlay"></div>
-
-    <!-- Floating petals -->
     <div class="petals" id="petals"></div>
 
     <div class="hero-content">
@@ -41,14 +160,7 @@
         <span class="divider-line"></span>
         <span class="divider-icon">✦</span>
       </div>
-      <div class="hero-names">
-        <a href="#co-qun" class="name-pill">Co Qun</a>
-        <a href="#co-bing" class="name-pill">Co Bing</a>
-        <a href="#helen" class="name-pill">Helen</a>
-        <a href="#lily" class="name-pill">Lily</a>
-        <a href="#wilson" class="name-pill">Wilson</a>
-        <a href="#leon" class="name-pill">Leon</a>
-      </div>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;letter-spacing:0.1em;">↓ 点击下方找到你的专属祝福</p>
     </div>
 
     <div class="slide-indicators" id="slideIndicators"></div>
@@ -72,7 +184,6 @@
       <div class="gallery-item"><img src="public/6.jpg" alt="回忆" loading="lazy" /></div>
       <div class="gallery-item"><img src="public/7.jpg" alt="回忆" loading="lazy" /></div>
       <div class="gallery-item"><img src="public/8.jpg" alt="回忆" loading="lazy" /></div>
-      <!-- Duplicate for infinite scroll -->
       <div class="gallery-item"><img src="public/1.jpg" alt="回忆" loading="lazy" /></div>
       <div class="gallery-item"><img src="public/2.jpg" alt="回忆" loading="lazy" /></div>
       <div class="gallery-item"><img src="public/3.jpg" alt="回忆" loading="lazy" /></div>
@@ -80,117 +191,145 @@
     </div>
   </section>
 
-  <!-- ===== MESSAGES SECTION ===== -->
+  <!-- ===== PEOPLE GRID ===== -->
   <section id="messages">
     <div class="section-header">
-      <div class="section-badge">💌 心意满满</div>
+      <div class="section-badge">💌 扫码查看专属祝福</div>
       <h2 class="section-title">每一份祝福，都来自真心</h2>
-      <p class="section-sub">感谢共事的每一天，愿你们的未来，如花盛放</p>
+      <p class="section-sub">点击卡片或扫描二维码，查看专属于你的祝福页面</p>
     </div>
 
-    <div class="cards-container">
+    <div class="people-grid">
 
-      <!-- Co Qun -->
-      <article class="person-card" id="co-qun">
-        <div class="card-header">
-          <span class="card-number-badge">01</span>
-          <div class="card-tag">🌸 退休祝福</div>
-          <h3 class="card-name">Co Qun</h3>
-          <div class="card-wish">🌺 退休快乐，幸福安康</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>时间过得真的很快，从我刚进公司到现在，一直都很感谢您的照顾和指导。虽然您平时对工作很严格，但大家都知道，您其实是一个特别温暖、特别为别人着想的人。很多时候，您嘴上不说，却一直默默照顾着大家。</p>
-          <p>这些年您真的辛苦了。现在终于到了可以好好休息、享受生活的时候了。虽然想到以后不能再和您一起工作，心里还是会有很多舍不得，但更希望您以后每天都能轻松开心，身体健康，平平安安。</p>
-          <p>也谢谢您曾经对我的帮助和包容，我会一直记得。真心祝福您，退休生活幸福快乐，一切顺顺利利。</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 01 群姐 -->
+      <a class="person-tile" href="qun.html">
+        <span class="tile-number">01</span>
+        <span class="tile-tag">🌸 退休祝福</span>
+        <span class="tile-name">群 姐</span>
+        <span class="tile-wish">🌺 退休快乐，幸福安康</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fqun.html" alt="QR 群姐" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
-      <!-- Co Bing -->
-      <article class="person-card" id="co-bing">
-        <div class="card-header">
-          <span class="card-number-badge">02</span>
-          <div class="card-tag">🌼 感谢同行</div>
-          <h3 class="card-name">Co Bing</h3>
-          <div class="card-wish">☀️ 工作顺利，每天开心</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>这段时间真的很感谢您的照顾和帮助。您平时总是很亲切，也很会照顾大家，跟您一起工作的时候，气氛都会轻松很多。很多事情因为有您的帮忙，也让我学到了不少东西。</p>
-          <p>虽然相处的时间不算特别长，但还是很开心能够认识您、和您一起共事。以后不管大家在哪里工作，我都会记得这段一起努力的日子。</p>
-          <p>真心祝福您以后工作顺利，生活开心，每一天都平安幸福，也希望您一直都能保持现在这样温暖又开朗的样子。</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 02 冰姐 -->
+      <a class="person-tile" href="bing.html">
+        <span class="tile-number">02</span>
+        <span class="tile-tag">🌼 感谢同行</span>
+        <span class="tile-name">冰 姐</span>
+        <span class="tile-wish">☀️ 工作顺利，每天开心</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fbing.html" alt="QR 冰姐" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
-      <!-- Helen -->
-      <article class="person-card" id="helen">
-        <div class="card-header">
-          <span class="card-number-badge">03</span>
-          <div class="card-tag">⭐ 感谢姐姐</div>
-          <h3 class="card-name">Helen</h3>
-          <div class="card-wish">✨ 发光发亮，继续精彩</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>这几年真的很幸运能够遇到你。刚开始很多事情我都不懂，是你一步一步耐心地教我、带着我，也因为有你，我才能慢慢成长到现在。工作上的你总是很厉害、很果断，很多问题到了你那里，好像都会变得安心很多。</p>
-          <p>但对我来说，你不只是同事，更像一个姐姐一样。除了工作，你也陪我聊了很多事情，在我压力大或者迷茫的时候，你总是会给我很多力量。其实我一直都很感谢你，只是平时没有认真说过。</p>
-          <p>虽然以后不在同一个team了，还是会觉得有点舍不得，但想到以后还能联系，心里又觉得安心一点。希望你去新的BU之后，一切都顺顺利利，继续发光发亮，也希望以后我们还能像现在一样，经常聊天、一起吐槽、一起加油。</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 03 Helen -->
+      <a class="person-tile" href="helen.html">
+        <span class="tile-number">03</span>
+        <span class="tile-tag">⭐ 感谢姐姐</span>
+        <span class="tile-name">Helen</span>
+        <span class="tile-wish">✨ 发光发亮，继续精彩</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fhelen.html" alt="QR Helen" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
-      <!-- Lily -->
-      <article class="person-card" id="lily">
-        <div class="card-header">
-          <span class="card-number-badge">04</span>
-          <div class="card-tag">🌷 珍贵回忆</div>
-          <h3 class="card-name">Lily</h3>
-          <div class="card-wish">🌸 越来越好，前途无量</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>其实刚开始认识的时候，我们还没有特别熟，但后来慢慢相处之后，真的越来越觉得你是一个很好、很温暖的人。尤其是我去中国学习那段时间，你给了我很多照顾，带我出去玩、帮我买东西，也一直对我特别好。对我来说，那段回忆真的很珍贵，我也一直都记在心里。</p>
-          <p>你工作能力很强，做事情认真又靠谱，同时也很懂得照顾别人的感受。后来我们也越来越常聊天、分享很多事情，所以现在想到要分别，心里还是会很舍不得。</p>
-          <p>不过我相信，像你这么优秀的人，不管去到哪里都会越来越好。希望你以后工作顺利、生活开心，也希望以后如果有机会，我们还能再见面，一起吃饭、聊天，就像以前一样。</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 04 Lily -->
+      <a class="person-tile" href="lily.html">
+        <span class="tile-number">04</span>
+        <span class="tile-tag">🌷 珍贵回忆</span>
+        <span class="tile-name">Lily</span>
+        <span class="tile-wish">🌸 越来越好，前途无量</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Flily.html" alt="QR Lily" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
-      <!-- Wilson -->
-      <article class="person-card" id="wilson">
-        <div class="card-header">
-          <span class="card-number-badge">05</span>
-          <div class="card-tag">🎊 返乡新程</div>
-          <h3 class="card-name">Wilson</h3>
-          <div class="card-wish">🏠 归途顺利，武汉再见</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>虽然一起工作的时间过得很快，但很开心能够认识你。对我们来说，你是一个性格特别开朗、很好相处的人，能够和你成为同事，真的让人觉得很开心。</p>
-          <p>现在你要回武汉开始新的生活了，虽然会有点舍不得，但还是很替你开心。希望以后不管是在工作还是生活上，一切都能顺顺利利，天天开心，也希望你回家之后能够多陪陪家人，好好享受新的生活。</p>
-          <p>以后如果还有机会见面，一定要再一起吃饭聊天。也欢迎你以后有机会再来越南玩！</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 05 Leon -->
+      <a class="person-tile" href="leon.html">
+        <span class="tile-number">05</span>
+        <span class="tile-tag">🤝 可靠伙伴</span>
+        <span class="tile-name">Leon</span>
+        <span class="tile-wish">🍀 好运常伴，顺顺利利</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fleon.html" alt="QR Leon" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
-      <!-- Leon -->
-      <article class="person-card" id="leon">
-        <div class="card-header">
-          <span class="card-number-badge">06</span>
-          <div class="card-tag">🤝 可靠伙伴</div>
-          <h3 class="card-name">Leon</h3>
-          <div class="card-wish">🍀 好运常伴，顺顺利利</div>
-        </div>
-        <div class="card-message">
-          <div class="quote-mark open">"</div>
-          <p>虽然你平时话不多，也比较安静，但大家都知道你是一个很好、很愿意帮助别人的人。每次有人有问题的时候，你都会很认真地帮忙回答，让人觉得特别可靠。</p>
-          <p>能和你一起工作真的很开心。很多时候虽然没有太多话，但相处起来会让人觉得很舒服、很安心。我也一直很感谢你平时的帮助。</p>
-          <p>以后我们还会继续在同一个team一起努力，希望接下来的工作一切顺利。最后，也希望你以后一直都能开开心心的，顺顺利利，遇到很多很多好运。</p>
-          <div class="quote-mark close">"</div>
-        </div>
-      </article>
+      <!-- 06 Wilson -->
+      <a class="person-tile" href="wilson.html">
+        <span class="tile-number">06</span>
+        <span class="tile-tag">🎊 返乡新程</span>
+        <span class="tile-name">Wilson</span>
+        <span class="tile-wish">🏠 归途顺利，武汉再见</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fwilson.html" alt="QR Wilson" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 07 Susan -->
+      <a class="person-tile" href="susan.html">
+        <span class="tile-number">07</span>
+        <span class="tile-tag">🌺 感谢有你</span>
+        <span class="tile-name">Susan</span>
+        <span class="tile-wish">🌟 一切顺利，幸福快乐</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fsusan.html" alt="QR Susan" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 08 Megan -->
+      <a class="person-tile" href="megan.html">
+        <span class="tile-number">08</span>
+        <span class="tile-tag">💫 感谢同行</span>
+        <span class="tile-name">Megan</span>
+        <span class="tile-wish">🌸 前途无量，越来越好</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fmegan.html" alt="QR Megan" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 09 Annie -->
+      <a class="person-tile" href="annie.html">
+        <span class="tile-number">09</span>
+        <span class="tile-tag">🌼 温暖同事</span>
+        <span class="tile-name">Annie</span>
+        <span class="tile-wish">☀️ 平安喜乐，万事顺心</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fannie.html" alt="QR Annie" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 10 Jessica -->
+      <a class="person-tile" href="jessica.html">
+        <span class="tile-number">10</span>
+        <span class="tile-tag">⭐ 优秀伙伴</span>
+        <span class="tile-name">Jessica</span>
+        <span class="tile-wish">✨ 闪闪发光，未来可期</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fjessica.html" alt="QR Jessica" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 11 Candy -->
+      <a class="person-tile" href="candy.html">
+        <span class="tile-number">11</span>
+        <span class="tile-tag">🍬 甜蜜同事</span>
+        <span class="tile-name">Candy</span>
+        <span class="tile-wish">🌺 甜甜蜜蜜，幸福满满</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fcandy.html" alt="QR Candy" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 12 Ken -->
+      <a class="person-tile" href="ken.html">
+        <span class="tile-number">12</span>
+        <span class="tile-tag">💪 靠谱战友</span>
+        <span class="tile-name">Ken</span>
+        <span class="tile-wish">🏆 步步高升，所向披靡</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fken.html" alt="QR Ken" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
+
+      <!-- 13 Kelins -->
+      <a class="person-tile" href="kelins.html">
+        <span class="tile-number">13</span>
+        <span class="tile-tag">🌟 特别的你</span>
+        <span class="tile-name">Kelins</span>
+        <span class="tile-wish">🍀 好运连连，精彩无限</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fkelins.html" alt="QR Kelins" width="120" height="120" loading="lazy"/>
+        <span class="tile-cta">查看祝福 →</span>
+      </a>
 
     </div>
   </section>
@@ -207,23 +346,6 @@
       <h2 class="closing-title">感谢每一段相遇</h2>
       <p class="closing-sub">不管身在何处，那些一起努力的日子，都是最珍贵的回忆</p>
       <p class="closing-sub">愿大家都能幸福快乐，一切顺顺利利 🌺</p>
-
-      <!-- QR Section — static image, no JS library needed -->
-      <div class="qr-section">
-        <h3 class="qr-title">📱 扫码查看此页面</h3>
-        <div class="qr-wrapper">
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2F"
-            alt="QR Code — https://edgareum.github.io/Minnie/"
-            width="200"
-            height="200"
-            loading="lazy"
-          />
-        </div>
-        <p class="qr-hint">📎 https://edgareum.github.io/Minnie/</p>
-        <a class="qr-link" href="https://edgareum.github.io/Minnie/" target="_blank" rel="noopener">打开网页 →</a>
-      </div>
-
       <div class="footer-line">
         <span>❤️ 用心制作，送给最好的同事们</span>
       </div>

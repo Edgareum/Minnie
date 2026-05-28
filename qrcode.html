@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code – Minnie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(ellipse at 30% 20%, #1a0533 0%, #0d001a 60%, #000 100%);
+      overflow: hidden;
+    }
+
+    /* floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .35;
+      animation: drift 12s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .orb-1 { width: 420px; height: 420px; background: #c026d3; top: -120px; left: -120px; animation-duration: 14s; }
+    .orb-2 { width: 340px; height: 340px; background: #7c3aed; bottom: -100px; right: -80px; animation-duration: 10s; }
+    .orb-3 { width: 260px; height: 260px; background: #ec4899; top: 50%; left: 55%; animation-duration: 18s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.05); } }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 48px 44px;
+      text-align: center;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(192,38,211,0.2) inset;
+      animation: floatUp .8s ease both;
+    }
+    @keyframes floatUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f0abfc, #c084fc, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+    }
+    .tagline {
+      font-size: .85rem;
+      color: rgba(255,255,255,.45);
+      font-weight: 300;
+      margin-bottom: 32px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+
+    /* QR wrapper */
+    .qr-wrapper {
+      position: relative;
+      display: inline-block;
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 0 40px rgba(192,38,211,.5), 0 0 0 3px rgba(192,38,211,.25);
+      margin-bottom: 28px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .qr-wrapper:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 60px rgba(192,38,211,.7), 0 0 0 4px rgba(192,38,211,.4);
+    }
+    #qr { display: block; }
+
+    .url-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: .8rem;
+      color: rgba(255,255,255,.7);
+      word-break: break-all;
+      margin-bottom: 28px;
+      letter-spacing: .3px;
+    }
+    .url-pill svg { flex-shrink: 0; opacity: .6; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c026d3, #7c3aed);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: .9rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity .25s, transform .25s, box-shadow .25s;
+      box-shadow: 0 8px 30px rgba(192,38,211,.45);
+    }
+    .btn:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(192,38,211,.6); }
+    .btn:active { transform: translateY(0); }
+
+    .footer {
+      margin-top: 36px;
+      font-size: .72rem;
+      color: rgba(255,255,255,.25);
+      letter-spacing: .5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="card">
+    <div class="logo">✦ Minnie</div>
+    <div class="tagline">Scan to visit</div>
+
+    <div class="qr-wrapper">
+      <canvas id="qr"></canvas>
+    </div>
+
+    <div class="url-pill">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+      </svg>
+      edgareum.github.io/Minnie/
+    </div>
+
+    <a class="btn" href="https://edgareum.github.io/Minnie/" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+      Mở trang web
+    </a>
+
+    <div class="footer">edgareum.github.io/Minnie/ &nbsp;·&nbsp; 2026</div>
+  </div>
+
+  <!-- QRCode.js (MIT) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    QRCode.toCanvas(document.getElementById('qr'), 'https://edgareum.github.io/Minnie/', {
+      width: 220,
+      margin: 1,
+      color: { dark: '#1a0533', light: '#ffffff' },
+      errorCorrectionLevel: 'H'
+    }, function(err){ if(err) console.error(err); });
+  </script>
+</body>
+</html>
