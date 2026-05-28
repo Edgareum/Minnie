@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -209,17 +208,20 @@
       <p class="closing-sub">不管身在何处，那些一起努力的日子，都是最珍贵的回忆</p>
       <p class="closing-sub">愿大家都能幸福快乐，一切顺顺利利 🌺</p>
 
-      <!-- QR Section -->
-      <div class="qr-section" id="qrSection">
+      <!-- QR Section — static image, no JS library needed -->
+      <div class="qr-section">
         <h3 class="qr-title">📱 扫码查看此页面</h3>
         <div class="qr-wrapper">
-          <canvas id="qrCanvas"></canvas>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2F"
+            alt="QR Code — https://edgareum.github.io/Minnie/"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
         </div>
-        <p class="qr-hint" id="qrHint">请部署到 GitHub Pages 后更新链接</p>
-        <div class="qr-input-row">
-          <input type="text" id="qrUrlInput" placeholder="输入你的 GitHub Pages URL..." />
-          <button id="qrGenBtn">生成 QR</button>
-        </div>
+        <p class="qr-hint">📎 https://edgareum.github.io/Minnie/</p>
+        <a class="qr-link" href="https://edgareum.github.io/Minnie/" target="_blank" rel="noopener">打开网页 →</a>
       </div>
 
       <div class="footer-line">
@@ -231,4 +233,3 @@
   <script src="main.js"></script>
 </body>
 </html>
-

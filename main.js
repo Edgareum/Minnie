@@ -97,54 +97,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// ---- QR CODE GENERATOR ----
-(function initQR() {
-  const canvas = document.getElementById('qrCanvas');
-  const btn = document.getElementById('qrGenBtn');
-  const input = document.getElementById('qrUrlInput');
-  const hint = document.getElementById('qrHint');
 
-  function generateQR(url) {
-    if (!url || !url.trim()) return;
-    const cleanUrl = url.trim();
-    QRCode.toCanvas(canvas, cleanUrl, {
-      width: 200,
-      margin: 1,
-      color: {
-        dark: '#1a1220',
-        light: '#ffffff'
-      },
-      errorCorrectionLevel: 'M'
-    }, function(err) {
-      if (err) {
-        hint.textContent = '生成失败，请检查链接格式';
-      } else {
-        hint.textContent = `✅ QR已生成 → ${cleanUrl}`;
-      }
-    });
-  }
-
-  btn.addEventListener('click', () => generateQR(input.value));
-
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter') generateQR(input.value);
-  });
-
-  // Try to auto-detect current URL (works when deployed)
-  const currentUrl = window.location.href;
-  if (currentUrl && !currentUrl.includes('localhost') && !currentUrl.includes('127.0.0.1') && !currentUrl.includes('file://')) {
-    input.value = currentUrl;
-    generateQR(currentUrl);
-    hint.textContent = `✅ 已自动生成当前页面 QR`;
-  } else {
-    // Generate a placeholder to show the QR area nicely
-    QRCode.toCanvas(canvas, 'https://your-github-pages-url.github.io', {
-      width: 200,
-      margin: 1,
-      color: { dark: '#1a1220', light: '#ffffff' }
-    }, () => {});
-  }
-})();
 
 // ---- PARALLAX ON HERO ----
 (function initParallax() {
