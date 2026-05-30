@@ -398,17 +398,20 @@ body {
 .gallery-track.single-item .gallery-item {
   width: 100%;
   max-width: 440px;
-  aspect-ratio: 1.5038; /* Matches the 1179x784 image aspect ratio perfectly */
-  border-radius: 24px;
+  height: auto;
+  border-radius: 20px;
   border: none;
   background: transparent;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
   overflow: hidden;
   position: relative;
   padding: 4px; /* border thickness */
   transform: translateZ(0); /* Fixes iOS Safari rounded corners clipping bug */
   isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* Force border-radius clipping on Safari */
 }
 
 .gallery-track.single-item .gallery-item::before {
@@ -438,21 +441,20 @@ body {
   position: absolute;
   inset: 4px;
   background: var(--ink-mid);
-  border-radius: 20px;
+  border-radius: 16px;
   z-index: 2;
   opacity: 1 !important;
   transition: none !important;
 }
 
 .gallery-track.single-item .gallery-item img {
-  position: absolute;
-  inset: 4px;
+  position: relative;
   z-index: 3;
-  width: calc(100% - 8px) !important;
-  height: calc(100% - 8px) !important;
-  object-fit: cover !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
   display: block;
-  border-radius: 20px;
+  border-radius: 16px;
   transition: transform 0.5s var(--ease-smooth);
 }
 
@@ -472,13 +474,16 @@ body {
 
 @media (max-width: 560px) {
   .gallery-track.single-item .gallery-item {
-    border-radius: 20px;
+    max-width: 90vw;
+    border-radius: 16px;
+    padding: 3px;
   }
   .gallery-track.single-item .gallery-item::after {
-    border-radius: 16px;
+    inset: 3px;
+    border-radius: 14px;
   }
   .gallery-track.single-item .gallery-item img {
-    border-radius: 16px;
+    border-radius: 14px;
   }
 }
 
