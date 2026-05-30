@@ -88,7 +88,9 @@ body {
 .page-main {
   position: relative;
   z-index: 10;
+  width: 100%;
   max-width: 720px;
+  min-width: 0;
   margin: 0 auto;
   padding: 3rem 1.5rem 4rem;
   display: flex;
