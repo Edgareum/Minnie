@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>感谢与祝福 · 致亲爱的同事们</title>
+  <meta name="description" content="送给每一位亲爱的同事，感谢曾经共同奋斗的时光，愿未来一切顺遂，幸福安康。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    .people-grid {
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .person-tile {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 1.4rem 1rem 1.2rem;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  box-shadow 0.4s ease,
+                  border-color 0.3s;
+      backdrop-filter: blur(12px);
+    }
+
+    .person-tile::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, #c9a84c, #e8a0b0, #c9a84c);
+      border-radius: 20px 20px 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .person-tile:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.3);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    .person-tile:hover::before { opacity: 1; }
+
+    .tile-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, #f0d080 60%, #e8a0b0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.06em;
+    }
+
+    .tile-qr {
+      border-radius: 10px;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+    }
+
+    .person-tile:hover .tile-qr {
+      transform: scale(1.06);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.3);
+    }
+
+    @media (max-width: 560px) {
+      .people-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+        padding: 0 0.8rem;
+      }
+      .tile-name { font-size: 1.1rem; }
+    }
+  </style>
+  <link rel="stylesheet" crossorigin href="/Minnie/assets/index-DbD7PQij.css">
+</head>
+<body>
+
+  <!-- ===== HERO / SLIDESHOW ===== -->
+  <section id="hero">
+    <div class="slideshow" id="slideshow">
+      <div class="slide active" style="background-image:url('/Minnie/assets/1-BzPkwtLN.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/2-KT8Z0cku.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/3-zqCaPdZf.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/4-C0kpMLRo.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/5-BZxolPKZ.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/6-D1S1M1_O.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/7-D0E__Wzl.jpg')"></div>
+      <div class="slide" style="background-image:url('/Minnie/assets/8-DaQF5OoC.jpg')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="petals" id="petals"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">💐 真诚祝福</div>
+      <h1 class="hero-title">
+        <span class="line1">感谢与祝福</span>
+        <span class="line2">致亲爱的同事们</span>
+      </h1>
+      <p class="hero-subtitle">感谢每一段共同奋斗的岁月<br/>愿你们前路似锦，幸福安康</p>
+      <div class="hero-divider">
+        <span class="divider-icon">✦</span>
+        <span class="divider-line"></span>
+        <span class="divider-icon">✦</span>
+      </div>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;letter-spacing:0.1em;">↓ 点击下方找到你的专属祝福</p>
+    </div>
+
+    <div class="slide-indicators" id="slideIndicators"></div>
+    <button class="slide-btn prev" id="prevBtn" aria-label="Previous">‹</button>
+    <button class="slide-btn next" id="nextBtn" aria-label="Next">›</button>
+
+    <div class="scroll-hint">
+      <span>向下滚动</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY STRIP ===== -->
+  <section id="gallery">
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-item"><img src="/Minnie/assets/1-BzPkwtLN.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/2-KT8Z0cku.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/3-zqCaPdZf.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/4-C0kpMLRo.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/5-BZxolPKZ.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/6-D1S1M1_O.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/7-D0E__Wzl.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/8-DaQF5OoC.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/1-BzPkwtLN.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/2-KT8Z0cku.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/3-zqCaPdZf.jpg" alt="回忆" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/Minnie/assets/4-C0kpMLRo.jpg" alt="回忆" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- ===== PEOPLE GRID ===== -->
+  <section id="messages">
+    <div class="section-header">
+      <div class="section-badge">💌 扫码查看专属祝福</div>
+      <h2 class="section-title">每一份祝福，都来自真心</h2>
+      <p class="section-sub">点击卡片或扫描二维码，查看专属于你的祝福页面</p>
+    </div>
+
+    <div class="people-grid">
+
+      <!-- 01 群姐 -->
+      <a class="person-tile" href="qun.html">
+        <span class="tile-name">群 姐</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fqun.html" alt="QR 群姐" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 02 冰姐 -->
+      <a class="person-tile" href="bing.html">
+        <span class="tile-name">冰 姐</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fbing.html" alt="QR 冰姐" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 03 Helen -->
+      <a class="person-tile" href="helen.html">
+        <span class="tile-name">Helen</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fhelen.html" alt="QR Helen" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 04 Lily -->
+      <a class="person-tile" href="lily.html">
+        <span class="tile-name">Lily</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Flily.html" alt="QR Lily" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 05 Leon -->
+      <a class="person-tile" href="leon.html">
+        <span class="tile-name">Leon</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fleon.html" alt="QR Leon" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 06 Wilson -->
+      <a class="person-tile" href="wilson.html">
+        <span class="tile-name">Wilson</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fwilson.html" alt="QR Wilson" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 07 Susan -->
+      <a class="person-tile" href="susan.html">
+        <span class="tile-name">Susan</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fsusan.html" alt="QR Susan" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 08 Megan -->
+      <a class="person-tile" href="megan.html">
+        <span class="tile-name">Megan</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fmegan.html" alt="QR Megan" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 09 Annie -->
+      <a class="person-tile" href="annie.html">
+        <span class="tile-name">Annie</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fannie.html" alt="QR Annie" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 10 Jessica -->
+      <a class="person-tile" href="jessica.html">
+        <span class="tile-name">Jessica</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fjessica.html" alt="QR Jessica" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 11 Candy -->
+      <a class="person-tile" href="candy.html">
+        <span class="tile-name">Candy</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fcandy.html" alt="QR Candy" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 12 Ken -->
+      <a class="person-tile" href="ken.html">
+        <span class="tile-name">Ken</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fken.html" alt="QR Ken" width="120" height="120" loading="lazy"/>
+        </a>
+
+      <!-- 13 Kelins -->
+      <a class="person-tile" href="kelins.html">
+        <span class="tile-name">Kelins</span>
+        <img class="tile-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&margin=6&color=1a1220&bgcolor=ffffff&data=https%3A%2F%2Fedgareum.github.io%2FMinnie%2Fkelins.html" alt="QR Kelins" width="120" height="120" loading="lazy"/>
+        </a>
+
+    </div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section id="closing">
+    <div class="closing-bg"></div>
+    <div class="closing-content">
+      <div class="lantern-row">
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+        <span class="lantern">🏮</span>
+      </div>
+      <h2 class="closing-title">感谢每一段相遇</h2>
+      <p class="closing-sub">不管身在何处，那些一起努力的日子，都是最珍贵的回忆</p>
+      <p class="closing-sub">愿大家都能幸福快乐，一切顺顺利利 🌺</p>
+      <div class="footer-line">
+        <span>❤️ 用心制作，送给最好的同事们</span>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
+
